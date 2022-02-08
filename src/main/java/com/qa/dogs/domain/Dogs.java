@@ -1,5 +1,7 @@
 package com.qa.dogs.domain;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -71,6 +73,31 @@ public class Dogs {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	// Hash-code and equals
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(age, id, name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Dogs other = (Dogs) obj;
+		return age == other.age && Objects.equals(id, other.id) && Objects.equals(name, other.name);
+	}
+
+	// To String
+	@Override
+	public String toString() {
+		return "Dogs [id=" + id + ", name=" + name + ", age=" + age + "]";
 	}
 
 }
