@@ -10,7 +10,7 @@ public interface CRUDInterface <T> {
 	T create (T t);
 	
 	//Read All
-	List<T> getall();
+	List<T> getAll();
 	
 	//Read by ID
 	T getById(Long id);

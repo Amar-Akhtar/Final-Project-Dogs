@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.dogs.domain.Dogs;
+import com.qa.dogs.service.DogsService;
 
 @RestController
 @RequestMapping("/dogs")
