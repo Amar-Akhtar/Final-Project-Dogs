@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.qa.dogs.domain.Dogs;
+import com.qa.dogs.repo.DogRepo;
 
 @Service
 public class DogsService implements CRUDInterface<Dogs> {
@@ -26,7 +27,7 @@ public class DogsService implements CRUDInterface<Dogs> {
 
 	//Read
 	@Override
-	public List<Dogs> getall() {
+	public List<Dogs> getAll() {
 		
 		return this.repo.findAll();
 	}
