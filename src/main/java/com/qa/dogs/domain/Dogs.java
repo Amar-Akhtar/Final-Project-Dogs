@@ -11,22 +11,39 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name="dogs")
+@Table(name = "dogs")
 public class Dogs {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column
 	@NotBlank(message = "Please enter a name")
 	private String name;
-	
+
 	@Min(0)
 	@Max(20)
 	@Column
 	private int age;
-	
-	
+
+	// Empty Constructor
+	public Dogs() {
+		super();
+	}
+
+	// Customer-View
+	public Dogs(String name, int age) {
+		super();
+		this.name = name;
+		this.age = age;
+	}
+
+	// Over-Loading
+	public Dogs(Long id, String name, int age) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+	}
 }
-	
