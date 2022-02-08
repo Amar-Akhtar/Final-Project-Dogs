@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,5 +49,11 @@ public class DogsController {
 	@PutMapping("/updatedog/{id}")
 	public ResponseEntity<Dogs> updateDog(@PathVariable Long id, @RequestBody Dogs b){
 		return new ResponseEntity<Dogs>(this.dogService.update(id, b), HttpStatus.OK);
+	}
+	
+	//Delete
+	@DeleteMapping("/deleteDog/{id}")
+	public ResponseEntity<Dogs> deleteDog(@PathVariable Long id){
+		return new ResponseEntity<Dogs>(this.dogService.delete(id), HttpStatus.OK);
 	}
 }
