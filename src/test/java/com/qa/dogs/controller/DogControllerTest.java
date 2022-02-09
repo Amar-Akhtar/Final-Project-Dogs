@@ -26,7 +26,7 @@ import com.qa.dogs.domain.Dogs;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Sql(scripts = {"classpath:dog-schema.sql", "classpath:dog-data.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-@ActiveProfiles
+@ActiveProfiles("test")
 public class DogControllerTest {
 
 	@Autowired
@@ -41,9 +41,9 @@ public class DogControllerTest {
 		
 		String newDogJSON = this.map.writeValueAsString(newDog);
 		
-		RequestBuilder mockRequest = post("/createDog").contentType(MediaType.APPLICATION_JSON);
+		RequestBuilder mockRequest = post("/dogs/createDog").contentType(MediaType.APPLICATION_JSON).content(newDogJSON);
 		
-		Dogs savedDog = new Dogs (2L, "Cadie", 2);
+		Dogs savedDog = new Dogs (2L, "Cadie", 3);
 		
 		String savedDogJSON = this.map.writeValueAsString(savedDog);
 		
@@ -56,11 +56,11 @@ public class DogControllerTest {
 	
 	@Test
 	void testRead() throws Exception {
-		Dogs readDog = new Dogs(1L, "Diego", 2);
+		Dogs readDog = new Dogs(1L, "Cadie", 3);
 		List<Dogs> allDogs = List.of(readDog);
 		String readDogJSON = this.map.writeValueAsString(allDogs);
 		
-		RequestBuilder readRequest = get("/getDog");
+		RequestBuilder readRequest = get("/dogs/getDog");
 		
 		ResultMatcher status = status().isOk();
 		ResultMatcher body = content().json(readDogJSON);
@@ -75,7 +75,7 @@ public class DogControllerTest {
 		String updateDogJSON = this.map.writeValueAsString(updateDog);
 		Long IdUpdate = 1L;
 		
-		RequestBuilder updateRequest = put("/updatedog/" + IdUpdate).contentType(MediaType.APPLICATION_JSON).content(updateDogJSON);
+		RequestBuilder updateRequest = put("/dogs/updatedog/" + IdUpdate).contentType(MediaType.APPLICATION_JSON).content(updateDogJSON);
 		
 		Dogs retUpdatedDog = new Dogs(1L, "Lola", 1);
 		String retUpdatedDogJSON = this.map.writeValueAsString(retUpdatedDog);
@@ -93,7 +93,7 @@ public class DogControllerTest {
 		String deleteDogJSON = this.map.writeValueAsString(deleteDog);
 		
 		Long removeId = 1L;
-		RequestBuilder deleteRequest = delete("/deleteDog/" + removeId);
+		RequestBuilder deleteRequest = delete("/dogs/deleteDog/" + removeId);
 		ResultMatcher Status = status().isOk();
 		ResultMatcher Body = content().json(deleteDogJSON);
 		
