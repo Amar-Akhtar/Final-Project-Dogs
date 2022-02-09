@@ -27,14 +27,14 @@ public class DogUnitTest {
 
 		assertEquals((Long) 1L, cadie.getId());
 		assertEquals("Cadie", cadie.getName());
-		assertEquals(2, cadie.getAge());
+		assertEquals(3, cadie.getAge());
 
 	}
 
 	@Test
 	public void testtoString() {
 		Dogs cadie = new Dogs(1L, "Cadie", 3);
-		assertEquals("Dogs [id=1, name=Cadie, age=3", cadie.toString());
+		assertEquals("Dogs [id=1, name=Cadie, age=3]", cadie.toString());
 	}
 
 }

@@ -75,11 +75,20 @@ public class Dogs {
 		this.age = age;
 	}
 
-	// Hash-code and equals
+	
 
+	
+
+	// To String
+	@Override
+	public String toString() {
+		return "Dogs [id=" + id + ", name=" + name + ", age=" + age + "]";
+	}
+
+	//Hash-code and Equals 
 	@Override
 	public int hashCode() {
-		return Objects.hash(age, id, name);
+		return Objects.hash(age, name);
 	}
 
 	@Override
@@ -91,13 +100,7 @@ public class Dogs {
 		if (getClass() != obj.getClass())
 			return false;
 		Dogs other = (Dogs) obj;
-		return age == other.age && Objects.equals(id, other.id) && Objects.equals(name, other.name);
-	}
-
-	// To String
-	@Override
-	public String toString() {
-		return "Dogs [id=" + id + ", name=" + name + ", age=" + age + "]";
+		return age == other.age && Objects.equals(name, other.name);
 	}
 
 }
