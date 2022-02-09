@@ -40,7 +40,7 @@ public class DogsController {
 	}
 	
 	//Read-by-Id
-	@GetMapping("/getId")
+	@GetMapping("/getId/{id}")
 	public ResponseEntity<Dogs> getId(@PathVariable Long id){
 		return new ResponseEntity<Dogs>(this.dogService.getById(id), HttpStatus.FOUND);
 		

@@ -70,6 +70,24 @@ public class DogControllerTest {
 	}
 	
 	@Test
+	void testGetId() throws Exception{
+		Dogs readDog = new Dogs(1L, "Cadie", 3);
+		String readDogJSON = this.map.writeValueAsString(readDog);
+		Long id = 1L;
+		
+		RequestBuilder getRequestById = get("/dogs/getId/" + id);
+		
+		ResultMatcher status = status().isFound();
+		ResultMatcher body = content().json(readDogJSON);
+		
+		this.mock.perform(getRequestById).andExpect(status).andExpect(body);
+	}
+	
+	
+	
+	
+	
+	@Test
 	void testUpdate() throws Exception{
 		Dogs updateDog = new Dogs("Lola", 1);
 		String updateDogJSON = this.map.writeValueAsString(updateDog);
